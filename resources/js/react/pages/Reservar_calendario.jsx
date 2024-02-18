@@ -47,6 +47,7 @@ function Reservar() {
                             }}
                             disablePast
                             displayWeekNumber={true}
+                            ampmInClock={false}
                             shouldDisableTime={(time) => {
                                 const date = time.format('YYYY-MM-DD');
                                 const hour = time.hour();

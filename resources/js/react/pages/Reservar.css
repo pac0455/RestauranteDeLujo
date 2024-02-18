@@ -1,21 +1,19 @@
 .MuiDialogActions-root{
     display:none !important;
 }
-/* .css-4pax7l-MuiPickersLayout-root{
-    border-radius: 10px;
-    background-color: #0C0C0C !important; 
-}
-
-.css-1hbyad5-MuiTypography-root{
-    display:none !important
-}
-.css-1eurbeq-MuiPickersToolbar-root-MuiDatePickerToolbar-root{
-    background: #0C0C0C
-}
-.css-15jcv2p-MuiPickersToolbar-content{
-    justify-content: center !important;
-}
-.css-15jcv2p-MuiPickersToolbar-content>h4{
-    font-size: 56px !important;
+.css-7kirvq-MuiTypography-root-MuiPickersToolbarText-root.Mui-selected {
+    font-size: x-large !important;
     font-weight: 500;
+}
+.css-zddqwy-MuiClockNumber-root{
+    font-size: x-large !important;
+    font-weight: 300
+}
+.css-zddqwy-MuiClockNumber-root.Mui-disabled{
+    font-size: large !important;
+    font-weight: 100
+}
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root{
+    font-weight: 500 !important;
+    font-size: 1rem !important;
 }

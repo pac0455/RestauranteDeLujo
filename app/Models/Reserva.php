@@ -12,6 +12,11 @@ class Reserva extends Model
     protected $fillable = [
         'id_user',
         'id_menu',
-        'id_fecha'
+        'id_fecha',
+        'nombre',
+        'email',
+        'CVV',
+        'nombre_tarjeta',
+        'n_tarjeta'
     ];
 }

@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('reserva', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_user')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('email')->nullable();
+            $table->string('CVV')->nullable();
+            $table->string('nombre_tarjeta')->nullable();
+            $table->string('n_tarjeta')->nullable();
             $table->bigInteger('id_menu');
             $table->bigInteger('id_fecha')->unique();
             $table->foreign('id_user')->references('id')->on('users');

@@ -28,6 +28,11 @@ class ReservasController extends Controller
             'tarjeta_credito'=>$tarjeta_credito
         ]);
     }
+    public function getReservasUser(){
+        $user = Auth::user();
+        $reservas=Reserva::where('id_user',$user->id)->get();
+        return response()->json($reservas);
+    }
     public function ReservarLogueado(Request $request){
         try {
             $user=Auth::user();
@@ -51,11 +56,24 @@ class ReservasController extends Controller
             ], 500);
         }
     }
-    public function ReservarNoLogueado(){
+    public function ReservarNoLogueado(Request $request){
         try {
-            $user=Auth::user();
+            $fecha=Fecha::where('dia', $request->dia)
+            ->where('hora', $request->hora)
+            ->first();
+            Reserva::create([
+                'id_fecha'=>$fecha->id,
+                'nombre'=>$request->nombre,
+                'email'=>$request->email,
+                'CVV'=>$request->CVV,
+                'nombre_tarjeta'=>$request->nombre_tarjeta,
+                'n_tarjeta'=>$request->n_tarjeta,
+                'id_menu'=>$request->menu
+            ]);   
             return response()->json([
-                'user'=>$user,
+                'status' => true,
+                'message' =>'Reserva creada apropiadamente',
+                'data'=>$request->all(),
             ]);
         } catch (\Throwable $th) {
             return response()->json([

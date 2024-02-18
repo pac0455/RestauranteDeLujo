@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import SubHeading from '../components/SubHeading/SubHeading';
 import { Link, useParams } from 'react-router-dom';
 import { getAllDataUsers } from '../services/fecth';
-import { ReservarUserLogueado } from '../services/fecth';
+import { ReservarUserLogueado, ReservarUserNoLogueado } from '../services/fecth';
 
 function Reservar_datos() {
   const { dia, hora } = useParams()
@@ -12,6 +12,8 @@ function Reservar_datos() {
   const [n_tarjeta, setn_tarjeta] = useState()
   const [Nombre_tarjeta, setNombre_tarjeta] = useState()
   const [menu, setmenu] = useState()
+  const [email, SetEmail] = useState()
+  const [Nombre, setNombre] = useState()
 
   useEffect(() => {
     let token = localStorage.getItem('token')
@@ -27,9 +29,10 @@ function Reservar_datos() {
     }
   }, [Logueado])
   const handleLength = (e) => {
-    if (e.target.value.length > 3 && e.target.value < 0) {
+    if (e.target.value.length > 3 || e.target.value.length < 0) {
       e.target.value = 999
     }
+    setcvv(e.target.value)
   }
 
   const handleTarjetaCredito = (e) => {
@@ -39,16 +42,27 @@ function Reservar_datos() {
     setn_tarjeta(tarjeta_select.n_tarjeta)
     setcvv(tarjeta_select.CVV)
   }
-  const handleSubmitLogueado = (e) => {
+  const handleSubmitLogueado = async (e) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    try {
-      if(menu==null) throw new Error('No hay un menu seleccionado');
-        ReservarUserLogueado(token,dia,hora,menu)
-        window.location.href='/'
-      } catch (error) {
-        alert(error.message);
+    let response=await ReservarUserLogueado(token, dia, hora, menu) 
+    if(response.status){
+      alert('Reserva hecha');
+    }else{
+      alert('Ha ocurrido un error');
+    }
+    window.location.href = '/'
+  }
+  const handleSubmitNoLogueado = async (e) => {
+    e.preventDefault()
+
+      let response=await ReservarUserNoLogueado(dia, hora, menu,Nombre,email,cvv,Nombre_tarjeta,n_tarjeta)
+      if(response.status){
+        alert('Reserva hecha');
+      }else{
+        alert('Ha ocurrido un error');
       }
+      window.location.href='/' 
   }
   return (
     Logueado ? (
@@ -63,7 +77,7 @@ function Reservar_datos() {
           </div>
           <form onSubmit={e => handleSubmitLogueado(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
             <select onChange={e => handleTarjetaCredito(e)} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
-              <option  value="">Selecciona una tarjeta</option>
+              <option value="">Selecciona una tarjeta</option>
 
               {data && data.tarjeta_credito.map(e => <option value={e.id}>{e.nombre_tarjeta}</option>)}
             </select>
@@ -73,10 +87,10 @@ function Reservar_datos() {
             </div>
             <div className='flex flex-col gap-4 w-full'>
               <div>
-                <input type="text" defaultValue={Nombre_tarjeta} readOnly required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+                <input type="text" onChange={e => setNombre_tarjeta(e.target.value)} defaultValue={Nombre_tarjeta} readOnly required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
               </div>
               <div className='flex justify-around'>
-                <input type="text" defaultValue={n_tarjeta} readOnly required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+                <input type="text" onChange={e => setn_tarjeta(e.target.value)} defaultValue={n_tarjeta} readOnly required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <input readOnly defaultValue={cvv} required onChange={(e) => handleLength(e)} type="number" placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
                   <option disabled value="">Selecciona un menu</option>
@@ -93,7 +107,6 @@ function Reservar_datos() {
         </div>
       </div>
     ) : (
-
       <div className='bg-[#0C0C0C] flex justify-center flex-col items-center '>
         <div className='w-full flex gap-1'>
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
@@ -103,10 +116,10 @@ function Reservar_datos() {
           <div className="app__newsletter-heading text-center">
             <SubHeading title="Reservar" className="p__cormorant text-sm" />
           </div>
-          <form onSubmit={e => handleLogin(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
+          <form onSubmit={e => handleSubmitNoLogueado(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
             <div className='flex gap-4 w-full'>
               <input onChange={(e) => SetEmail(e.target.value)} type="email" required placeholder="Enter your email address" className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-              <input onChange={(e) => SetPassword(e.target.value)} type="password" required placeholder="Enter your password" className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+              <input onChange={(e) => setNombre(e.target.value)} type="text" required placeholder="A nombre de..." className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
             </div>
             <div className='flex gap-4 w-full'>
               <input type="date" required defaultValue={dia} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
@@ -114,16 +127,16 @@ function Reservar_datos() {
             </div>
             <div className='flex flex-col gap-4 w-full'>
               <div>
-                <input type="text" required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+                <input type="text" onChange={(e) => setNombre_tarjeta(e.target.value)} required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
               </div>
-              <div className='flex justify-around'>
-                <input type="text" required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+              <div className='flex justify-around flex-wrap'>
+                <input type="text" onChange={(e) => setn_tarjeta(e.target.value)} required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <input onChange={(e) => handleLength(e)} type="number" required placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-                <select onChange={e => handleTarjetaCredito(e)} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
-                  <option value="">Selecciona un menu</option>
-                  <option value="menu1">Menu 1</option>
-                  <option value="menu2">Menu 2</option>
-                  <option value="menu3">Menu 3</option>
+                <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
+                  <option disabled value="">Selecciona un menu</option>
+                  <option value="1">Menu1</option>
+                  <option value="2">Menu2</option>
+                  <option value="3">Menu3</option>
                 </select>
               </div>
             </div>
@@ -136,5 +149,4 @@ function Reservar_datos() {
     )
   )
 }
-
 export default Reservar_datos

@@ -42,10 +42,6 @@ function Registro() {
   }
   return (
     <div className='bg-[#0C0C0C] flex justify-center flex-col items-center '>
-      <div className='w-full flex gap-1 mt-9'>
-        <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
-        <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
-      </div>
       <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-2/4 ">
         <div className="app__newsletter-heading text-center">
           <SubHeading title="Sign up" className="p__cormorant text-sm" />

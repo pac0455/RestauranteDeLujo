@@ -51,5 +51,25 @@ export const ReservarUserLogueado= async (token,dia,hora,menu)=>{
             console.log(result);
             return await result.json()
         }
-
+}
+export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombre_tarjeta,n_tarjeta)=>{
+    
+    const result=await fetch('http://localhost/example-app/public/api/reservarNoLogueado',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json', 
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            dia:dia,
+            hora:hora + ':00',
+            menu:menu,
+            nombre:nombre,
+            email:email,
+            CVV:CVV,
+            nombre_tarjeta:nombre_tarjeta,
+            n_tarjeta:n_tarjeta,
+        }) 
+    })
+    return await result.json()
 }

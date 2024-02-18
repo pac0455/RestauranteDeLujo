@@ -25,6 +25,7 @@ Route::post('/login',[AuthController::class, 'loginUser']);
 Route::get('/getHoras',[ReservasController::class, 'getAll_Horarios']);
 Route::post('/reservarNoLogueado',[ReservasController::class, 'ReservarNoLogueado']);
 Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/getReservasUser',[ReservasController::class, 'getReservasUser']);
     Route::post('/reservarLogueado',[ReservasController::class, 'ReservarLogueado']);
     Route::get('/getAllDataUsers',[ReservasController::class, 'getAllDataUsers']);
     Route::get('/logoutUser',[AuthController::class, 'logoutUser']);
