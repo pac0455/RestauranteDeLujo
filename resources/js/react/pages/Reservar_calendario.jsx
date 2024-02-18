@@ -27,7 +27,6 @@ function Reservar() {
         }
         fecth()
     }, [])
-
     const handleSiguiente = () => {
         if (!Nodatos) {
             alert('No has puesto hora ni dia, campo obligario')
