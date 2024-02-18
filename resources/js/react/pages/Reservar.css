@@ -18,38 +18,4 @@
 .css-15jcv2p-MuiPickersToolbar-content>h4{
     font-size: 56px !important;
     font-weight: 500;
-    color: white;
 }
-.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root{
-    color: white !important;
-}
-.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel{
-    color: white !important;
-}
-.css-31ca4x-MuiPickersFadeTransitionGroup-root{
-    color: white !important;
-
-}
-.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton{
-    color: white;
-}
-.css-xazc1j-MuiPickersYear-root{
-    color: white;
-
-}
-.css-xazc1j-MuiPickersYear-root>button{
-    background-color: gray;
-}
-.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button{
-    color: white !important;
-
-}
-.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button{
-    color: white !important;
-
-}
-button:disabled {
-    opacity: 0.5;
-    color: white !important;
-}
- */
