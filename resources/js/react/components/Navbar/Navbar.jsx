@@ -20,7 +20,7 @@ const Navbar = () => {
   },[logueado])
   const handleLogut=()=>{
     localStorage.setItem('token','')
-    window.location.reload()
+    window.location.href='/login'
   }
   return (
     <nav className="app__navbar">

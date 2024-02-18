@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import SubHeading from '../components/SubHeading/SubHeading';
 import { Link, useParams } from 'react-router-dom';
 import { getAllDataUsers } from '../services/fecth';
+import { ReservarUserLogueado } from '../services/fecth';
+
 function Reservar_datos() {
   const { dia, hora } = useParams()
   const [Logueado, setLogueado] = useState()
@@ -9,6 +11,7 @@ function Reservar_datos() {
   const [cvv, setcvv] = useState()
   const [n_tarjeta, setn_tarjeta] = useState()
   const [Nombre_tarjeta, setNombre_tarjeta] = useState()
+  const [menu, setmenu] = useState()
 
   useEffect(() => {
     let token = localStorage.getItem('token')
@@ -17,7 +20,6 @@ function Reservar_datos() {
     } else {
       setLogueado(true)
       const fecth = async () => {
-
         const response = await getAllDataUsers(localStorage.getItem('token'));
         setdata(response)
       }
@@ -25,12 +27,8 @@ function Reservar_datos() {
     }
   }, [Logueado])
   const handleLength = (e) => {
-    console.log(e.target.value.length)
-    if (e.target.value.length > 3) {
+    if (e.target.value.length > 3 && e.target.value < 0) {
       e.target.value = 999
-    }
-    if (e.target.value < 0) {
-      e.target.value = 111
     }
   }
 
@@ -40,7 +38,17 @@ function Reservar_datos() {
     setNombre_tarjeta(tarjeta_select.nombre_tarjeta)
     setn_tarjeta(tarjeta_select.n_tarjeta)
     setcvv(tarjeta_select.CVV)
-
+  }
+  const handleSubmitLogueado = (e) => {
+    e.preventDefault()
+    let token = localStorage.getItem('token')
+    try {
+      if(menu==null) throw new Error('No hay un menu seleccionado');
+        ReservarUserLogueado(token,dia,hora,menu)
+        window.location.href='/'
+      } catch (error) {
+        alert(error.message);
+      }
   }
   return (
     Logueado ? (
@@ -51,11 +59,12 @@ function Reservar_datos() {
         </div>
         <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-2/4 ">
           <div className="app__newsletter-heading text-center">
-            <SubHeading title="Sign up" className="p__cormorant text-sm" />
+            <SubHeading title="Reservar" className="p__cormorant text-sm" />
           </div>
-          <form className="flex items-center flex-col gap-7 mt-12 text-white">
+          <form onSubmit={e => handleSubmitLogueado(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
             <select onChange={e => handleTarjetaCredito(e)} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
-              <option value="">Selecciona una tarjeta</option>
+              <option  value="">Selecciona una tarjeta</option>
+
               {data && data.tarjeta_credito.map(e => <option value={e.id}>{e.nombre_tarjeta}</option>)}
             </select>
             <div className='flex gap-4 w-full'>
@@ -69,8 +78,12 @@ function Reservar_datos() {
               <div className='flex justify-around'>
                 <input type="text" defaultValue={n_tarjeta} readOnly required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <input readOnly defaultValue={cvv} required onChange={(e) => handleLength(e)} type="number" placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-                <input type="number" placeholder='Comensales' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-
+                <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
+                  <option disabled value="">Selecciona un menu</option>
+                  <option value="1">Menu1</option>
+                  <option value="2">Menu2</option>
+                  <option value="3">Menu3</option>
+                </select>
               </div>
             </div>
             <button type="submit" className="custom__button bg-crimson text-black font-bold tracking-wide uppercase px-6 py-2 lg:py-3 lg:px-8 border-none outline-none cursor-pointer sm:w-full lg:w-64 xl:w-96  hover:rounded-lg transition-all">
@@ -112,7 +125,6 @@ function Reservar_datos() {
                   <option value="menu2">Menu 2</option>
                   <option value="menu3">Menu 3</option>
                 </select>
-
               </div>
             </div>
             <button type="submit" className="custom__button bg-crimson text-black font-bold tracking-wide uppercase px-6 py-2 lg:py-3 lg:px-8 border-none outline-none cursor-pointer sm:w-full lg:w-64 xl:w-96  hover:rounded-lg transition-all">

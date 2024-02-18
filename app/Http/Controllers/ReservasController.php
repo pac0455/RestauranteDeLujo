@@ -39,7 +39,7 @@ class ReservasController extends Controller
                 'id_user'=>$user->id,
                 'id_menu'=>$menu->id,
                 'id_fecha'=>$fecha->id
-            ]);
+            ]); 
             return response()->json([
                 'status' => true,
                 'message' =>'Reserva creada apropiadamente',

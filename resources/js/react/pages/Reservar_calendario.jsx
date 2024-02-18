@@ -7,14 +7,11 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
-import { FaArrowRight } from 'react-icons/fa6';
-
+import { FaArrowRight } from 'react-icons/fa';
 import { getHoras } from '../services/fecth';
-
 import './Reservar.css';
 
 function Reservar() {
-    const isInCurrentMonth = (date) => date.get('month') === dayjs().get('month');
     const [fecha, setfecha] = useState(null)
     const [FechasDisponibles, setFechasDisponibles] = useState([])
     const [Nodatos, setNodatos] = useState(false)
@@ -55,7 +52,9 @@ function Reservar() {
                                 const hour = time.hour();
                                 return !FechasDisponibles.some((fechaDisponible) => fechaDisponible.dia == date && parseInt(fechaDisponible.hora.split(':')[0]) == hour);
                             }}
-                            shouldDisableDate={(date) =>  Dias && !Dias.includes(date.format('YYYY-MM-DD'))}
+                            shouldDisableDate={(date) => {
+                                return  Dias && !Dias.includes(date.format('YYYY-MM-DD'))
+                            }}
                             views={['day', 'hours']}
                             defaultValue={dayjs()}
                         />
