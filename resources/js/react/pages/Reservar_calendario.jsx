@@ -18,12 +18,12 @@ function Reservar() {
     const [fecha, setfecha] = useState(null)
     const [FechasDisponibles, setFechasDisponibles] = useState([])
     const [Nodatos, setNodatos] = useState(false)
-    const [Horas, setHoras] = useState()
+    const [Dias, setDias] = useState()
     useEffect(() => {
         const fecth = async () => {
             const data = await getHoras();
             setFechasDisponibles(data)
-            setHoras([...new Set(data.map(fecha => fecha.dia))])
+            setDias([...new Set(data.map(fecha => fecha.dia))])
         }
         fecth()
     }, [])
@@ -55,7 +55,7 @@ function Reservar() {
                                 const hour = time.hour();
                                 return !FechasDisponibles.some((fechaDisponible) => fechaDisponible.dia == date && parseInt(fechaDisponible.hora.split(':')[0]) == hour);
                             }}
-                            shouldDisableDate={(date) =>  Horas && !Horas.includes(date.format('YYYY-MM-DD'))}
+                            shouldDisableDate={(date) =>  Dias && !Dias.includes(date.format('YYYY-MM-DD'))}
                             views={['day', 'hours']}
                             defaultValue={dayjs()}
                         />
