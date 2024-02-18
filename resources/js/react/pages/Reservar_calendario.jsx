@@ -27,9 +27,8 @@ function Reservar() {
         }
         fecth()
     }, [])
-    console.log(Horas);
+
     const handleSiguiente = () => {
-        console.log(fecha)
         if (!Nodatos) {
             alert('No has puesto hora ni dia, campo obligario')
         } else {
@@ -57,11 +56,7 @@ function Reservar() {
                                 const hour = time.hour();
                                 return !FechasDisponibles.some((fechaDisponible) => fechaDisponible.dia == date && parseInt(fechaDisponible.hora.split(':')[0]) == hour);
                             }}
-                            shouldDisableDate={(date) => {
-                                const data = date.format('YYYY-MM-DD')
-                                console.log(Horas && !Horas.includes(data));
-                                return Horas && !Horas.includes(data)
-                            }}
+                            shouldDisableDate={(date) =>  Horas && !Horas.includes(date.format('YYYY-MM-DD'))}
                             views={['day', 'hours']}
                             defaultValue={dayjs()}
                         />
