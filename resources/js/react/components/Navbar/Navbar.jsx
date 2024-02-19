@@ -35,7 +35,6 @@ const Navbar = () => {
         <li className="p__opensans"><a href="#contact">Contact</a></li>
       </ul>
       {logueado ? (
-
         <div className='relative'>
           <FaCircleUser onClick={() => setOpciones(!opciones)} className='sm:text-lg lg:text-4xl cursor-pointer' color='white' />
           {opciones && (
@@ -50,6 +49,9 @@ const Navbar = () => {
                 <li onClick={handleLogut} className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg p__opensans'>Logut</li>
                 <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
                   <Link className="p__opensans" to={"/reservarCalendario"} onClick={() => setToggleMenu(false)}>Reservar</Link>
+                </li>
+                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
+                  <Link className="p__opensans" to={"/misReservas"} onClick={() => setToggleMenu(false)}>Mis reservas</Link>
                 </li>
               </ul>
             </div>)}

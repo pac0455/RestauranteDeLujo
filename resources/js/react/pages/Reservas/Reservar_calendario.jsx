@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import { FaArrowRight } from 'react-icons/fa';
-import { getHoras } from '../services/fecth';
+import { getHoras } from '../../services/fecth';
 import './Reservar.css';
 
 function Reservar() {
@@ -54,10 +50,10 @@ function Reservar() {
                                 return !FechasDisponibles.some((fechaDisponible) => fechaDisponible.dia == date && parseInt(fechaDisponible.hora.split(':')[0]) == hour);
                             }}
                             shouldDisableDate={(date) => {
-                                return  Dias && !Dias.includes(date.format('YYYY-MM-DD'))
+                                return Dias && !Dias.includes(date.format('YYYY-MM-DD'))
                             }}
                             views={['day', 'hours']}
-                            defaultValue={dayjs()}
+                            defaultValue={ dayjs(`${dayjs().add(1,'day').format('YYYY-MM-DD')} 21:00`)}
                         />
                     </LocalizationProvider>
                 </div>

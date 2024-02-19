@@ -1,5 +1,21 @@
-export const getHoras= async ()=>{
-    const result=await fetch('http://localhost/example-app/public/api/getHoras')
+export const getHoras= async (token)=>{
+    const result=await fetch('http://localhost/example-app/public/api/getReservasUser',{
+        headers: {
+            'Content-Type': 'application/json', 
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+    return await result.json()
+}
+export const getMisReservas= async ()=>{
+    const result=await fetch('http://localhost/example-app/public/api/getReservasUser',{
+        headers: {
+            'Content-Type': 'application/json', 
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
     return await result.json()
 }
 export const registro = async (name, email,password,nombre_tarjeta,cvv,n_tarjeta) => {

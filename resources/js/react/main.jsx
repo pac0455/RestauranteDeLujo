@@ -9,9 +9,7 @@ import {
 } from "react-router-dom";
 import { Navbar,FooterOverlay} from './components';
 import Login from './pages/Login';
-import ReservarCalendar from './pages/Reservar_calendario';
-import ReservarDatos from './pages/Reservar_datos';
-import Registro from './pages/Registro';
+import {Reservar_datos,Reservar_calendario,Registro,MisReservas} from './pages/';
 
 
 import './index.css';
@@ -40,15 +38,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/reservarCalendario',
-        element: <ReservarCalendar/>
+        element: <Reservar_calendario/>
       },
       {
         path: '/reservarDatos/:dia/:hora',
-        element: <ReservarDatos/>
+        element: <Reservar_datos/>
       },
       {
         path: '/register',
         element: <Registro/>
+      },
+      {
+        path: '/misReservas',
+        element: <MisReservas/>
       }
     ]
   }

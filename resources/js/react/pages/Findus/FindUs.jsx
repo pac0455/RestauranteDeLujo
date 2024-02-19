@@ -6,8 +6,8 @@ import { images } from '../../constants';
 const FindUs = () => (
   <div className="app__bg app__wrapper section__padding" id="contact">
     <div className="app__wrapper_info">
-      <SubHeading title="Contact" />
-      <h1 className="headtext__cormorant" style={{ marginBottom: '3rem' }}>Find Us</h1>
+      <SubHeading title="Contacto"/>
+      <h1 className="headtext__cormorant" style={{ marginBottom: '3rem' }}>Encuentranos</h1>
       <div className="app__wrapper-content">
         <p className="p__opensans">España, Cordoba Avd del aeropuerto,  codigo postal 14005</p>
         <p className="p__cormorant" style={{ color: '#DCCA87', margin: '2rem 0' }}>Horas de apertura</p>

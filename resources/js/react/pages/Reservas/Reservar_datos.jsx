@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import SubHeading from '../components/SubHeading/SubHeading';
+import SubHeading from '../../components/SubHeading/SubHeading';
 import { Link, useParams } from 'react-router-dom';
-import { getAllDataUsers } from '../services/fecth';
-import { ReservarUserLogueado, ReservarUserNoLogueado } from '../services/fecth';
+import { getAllDataUsers } from '../../services/fecth';
+import { ReservarUserLogueado, ReservarUserNoLogueado } from '../../services/fecth';
 
 function Reservar_datos() {
   const { dia, hora } = useParams()
