@@ -1,5 +1,5 @@
 export const getHoras= async (token)=>{
-    const result=await fetch('http://localhost/example-app/public/api/getReservasUser',{
+    const result=await fetch('http://localhost/example-app/public/api/getHoras',{
         headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',
