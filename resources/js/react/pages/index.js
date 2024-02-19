@@ -12,12 +12,7 @@ import Reservar_datos from './Reservas/Reservar_datos';
 import Registro from './Registro';
 import MisReservas from './MisReservas';
 import Carta from './Carta';
-
-
-
-
-
-
+import FormTarjetasCredito from './FormTarjetasCredito';
 
 export {
   AboutUs,
@@ -33,5 +28,6 @@ export {
   Reservar_datos,
   Registro,
   MisReservas,
-  Carta
+  Carta,
+  FormTarjetasCredito
 };

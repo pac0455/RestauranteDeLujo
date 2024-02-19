@@ -47,10 +47,13 @@ export const getAllDataUsers= async (token)=>{
     return await result.json()
 }
 export const ReservarUserLogueado= async (token,dia,hora,menu)=>{
+    console.log(menu);
+    console.log(dia);
+    console.log(hora);
         const result=await fetch('http://localhost/example-app/public/api/reservarLogueado',{
             method:'POST',
             headers: {
-                'Content-Type': 'application/json', 
+                'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
@@ -58,15 +61,11 @@ export const ReservarUserLogueado= async (token,dia,hora,menu)=>{
                 dia:dia,
                 hora:hora + ':00',
                 menu:menu
-            }) 
+            })
         })
-        if(!result.ok){
-            console.log(result);
-            return new Error(result)
-        }else{
-            console.log(result);
-            return await result.json()
-        }
+        console.log(result);
+        return await result.json()
+
 }
 export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombre_tarjeta,n_tarjeta)=>{
     
@@ -85,7 +84,21 @@ export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombr
             CVV:CVV,
             nombre_tarjeta:nombre_tarjeta,
             n_tarjeta:n_tarjeta,
-        }) 
+        })
+    })
+    return await result.json()
+}
+
+export const deleteReserva= async (id)=>{
+    const result=await fetch('http://localhost/example-app/public/api/deleteReserva',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            id:id,
+        })
     })
     return await result.json()
 }

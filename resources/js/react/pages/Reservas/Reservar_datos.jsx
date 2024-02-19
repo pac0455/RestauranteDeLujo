@@ -45,24 +45,25 @@ function Reservar_datos() {
   const handleSubmitLogueado = async (e) => {
     e.preventDefault()
     let token = localStorage.getItem('token')
-    let response=await ReservarUserLogueado(token, dia, hora, menu) 
-    if(response.status){
+    let response = await ReservarUserLogueado(token, dia, hora, menu)
+    console.log(response);
+    if (response.status) {
       alert('Reserva hecha');
-    }else{
+    } else {
       alert('Ha ocurrido un error');
     }
     window.location.href = '/'
   }
   const handleSubmitNoLogueado = async (e) => {
     e.preventDefault()
-
-      let response=await ReservarUserNoLogueado(dia, hora, menu,Nombre,email,cvv,Nombre_tarjeta,n_tarjeta)
-      if(response.status){
-        alert('Reserva hecha');
-      }else{
-        alert('Ha ocurrido un error');
-      }
-      window.location.href='/' 
+    let response = await ReservarUserNoLogueado(dia, hora, menu, Nombre, email, cvv, Nombre_tarjeta, n_tarjeta)
+    console.log(response);
+    if (response.status) {
+      alert('Reserva hecha');
+    } else {
+      alert('Ha ocurrido un error');
+    }
+    /* window.location.href='/' */
   }
   return (
     Logueado ? (
@@ -71,7 +72,7 @@ function Reservar_datos() {
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
         </div>
-        <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-2/4 ">
+        <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-3/4 ">
           <div className="app__newsletter-heading text-center">
             <SubHeading title="Reservar" className="p__cormorant text-sm" />
           </div>
@@ -112,7 +113,7 @@ function Reservar_datos() {
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
         </div>
-        <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-2/4 ">
+        <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-3/4 ">
           <div className="app__newsletter-heading text-center">
             <SubHeading title="Reservar" className="p__cormorant text-sm" />
           </div>

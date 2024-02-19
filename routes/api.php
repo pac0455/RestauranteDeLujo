@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/createUser',[AuthController::class, 'createUser']);
 Route::post('/login',[AuthController::class, 'loginUser']);
 Route::get('/getHoras',[ReservasController::class, 'getAll_Horarios']);
+Route::post('/deleteReserva',[ReservasController::class, 'deleteReserva']);
 Route::post('/reservarNoLogueado',[ReservasController::class, 'ReservarNoLogueado']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/getReservasUser',[ReservasController::class, 'getReservasUser']);

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReservaMail;
 use App\Models\Menu;
 use App\Models\Fecha;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 use App\Models\Tarjeta_credito;
+use PhpParser\Node\Stmt\TryCatch;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ReservasController extends Controller
 {
@@ -28,16 +31,51 @@ class ReservasController extends Controller
             'tarjeta_credito'=>$tarjeta_credito
         ]);
     }
+    public function deleteReserva(Request $request){
+        $id = $request->id;
+        try {
+            Reserva::destroy($id);
+            return response()->json([
+                'status' => true,
+                'message' =>'Reserva borrada apropiadamente',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => true,
+                'message' =>$th->getMessage(),
+            ]);
+        }
+        return response()->json($request->all());
+    }
     public function getReservasUser(){
         $user = Auth::user();
         $reservas = Reserva::where('id_user', $user->id)->get();
 
         foreach ($reservas as $reserva) {
             $reserva->user;
-            $reserva->menu; 
-            $reserva->fecha; 
+            $reserva->menu;
+            $reserva->fecha;
         }
         return response()->json($reservas);
+    }
+    public function AddTarjeta(Request $request){
+        try {
+            $Tarjeta_credito=Tarjeta_credito::create([
+                'n_tarjeta'=>$request->n_tarjeta,
+                'nombre_tarjeta'=>$request->nombre_tarjeta,
+                'CVV'=>$request->CVV
+            ]);
+            return response()->json([
+                'status' => true,
+                'message' =>'Tarjeta añadida',
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => true,
+                'message' =>$th->getMessage(),
+            ]);
+        }
+        return response()->json($request->all());
     }
     public function ReservarLogueado(Request $request){
         try {
@@ -50,7 +88,7 @@ class ReservasController extends Controller
                 'id_user'=>$user->id,
                 'id_menu'=>$menu->id,
                 'id_fecha'=>$fecha->id
-            ]); 
+            ]);
             return response()->json([
                 'status' => true,
                 'message' =>'Reserva creada apropiadamente',
@@ -75,11 +113,11 @@ class ReservasController extends Controller
                 'nombre_tarjeta'=>$request->nombre_tarjeta,
                 'n_tarjeta'=>$request->n_tarjeta,
                 'id_menu'=>$request->menu
-            ]);   
+            ]);
+            Mail::to($request->email)->send(new ReservaMail);
             return response()->json([
                 'status' => true,
                 'message' =>'Reserva creada apropiadamente',
-                'data'=>$request->all(),
             ]);
         } catch (\Throwable $th) {
             return response()->json([
