@@ -48,7 +48,9 @@ const Navbar = () => {
               <ul className='p-3 text-[#C0B176]'>
                 <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg p__opensans'>Mis reservas</li>
                 <li onClick={handleLogut} className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg p__opensans'>Logut</li>
-                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'><Link className="p__opensans" to={"/reservarCalendario"} onClick={() => setToggleMenu(false)}>Reservar</Link></li>
+                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
+                  <Link className="p__opensans" to={"/reservarCalendario"} onClick={() => setToggleMenu(false)}>Reservar</Link>
+                </li>
               </ul>
             </div>)}
         </div>
