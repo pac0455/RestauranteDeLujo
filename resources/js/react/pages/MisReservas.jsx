@@ -20,20 +20,21 @@ function MisReservas() {
       }
       fetchData(token);
     }
-  }, [Reservas]);
+  }, []);
   const handleDelete=async (id)=>{
     const response= await deleteReserva(id)
+    window.location.reload()
     console.log(response);
   }
   return (
     <div className='app__bg  min-h-screen p-3 flex flex-wrap justify-around'>
       <div className='app__bg  min-h-screen p-3 flex flex-wrap justify-around'>
-    {Reservas && Reservas.length === 0  ? (
+    {Reservas.length == 0  ? (
       <div className='w-full h-full flex justify-center items-center'>
       <p className='text-white font-bold text-3xl '>No hay reservas</p>
       </div>
     ) : (
-      Reservas && Reservas.map(reserva => (
+      Reservas.map(reserva => (
         <div className='bg-[#0C0C0C] sm:w-full lg:w-96 h-96 p-4 border border-white rounded-xl'>
           <h1 className='text-white font-semibold text-center text-6xl'>{reserva.user.name}</h1>
           <p className='text-white'><span className='font-semibold'>Id_reserva:</span> {reserva.id}</p>

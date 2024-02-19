@@ -17,6 +17,7 @@ function Reservar() {
             const data = await getHoras();
             setFechasDisponibles(data)
             setDias([...new Set(data.map(fecha => fecha.dia))])
+            console.log(700%26);
         }
         fecth()
     }, [])
@@ -34,9 +35,10 @@ function Reservar() {
                     <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
                     <div className='my-3 w-1/2 h-1 bg-white'></div>
                 </div>
-                <div className='flex gap-10'>
+                <div className='flex gap-10 p-7'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <StaticDateTimePicker className='w-96 rounded-lg shadow-inner'
+
+                        <StaticDateTimePicker className='sm:w-96 xs:w-full rounded-lg shadow-inner'
                             onChange={e => {
                                 setfecha(e)
                                 setNodatos(true)
