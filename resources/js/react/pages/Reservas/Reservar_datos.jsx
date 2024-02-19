@@ -63,7 +63,7 @@ function Reservar_datos() {
     } else {
       alert('Ha ocurrido un error');
     }
-    /* window.location.href='/' */
+    window.location.href='/'
   }
   return (
     Logueado ? (
@@ -79,7 +79,6 @@ function Reservar_datos() {
           <form onSubmit={e => handleSubmitLogueado(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
             <select onChange={e => handleTarjetaCredito(e)} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
               <option value="">Selecciona una tarjeta</option>
-
               {data && data.tarjeta_credito.map(e => <option value={e.id}>{e.nombre_tarjeta}</option>)}
             </select>
             <div className='flex gap-4 w-full'>
@@ -95,6 +94,7 @@ function Reservar_datos() {
                 <input readOnly defaultValue={cvv} required onChange={(e) => handleLength(e)} type="number" placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
                   <option disabled value="">Selecciona un menu</option>
+                  <option value="">Elige un menu</option>
                   <option value="1">Menu1</option>
                   <option value="2">Menu2</option>
                   <option value="3">Menu3</option>
@@ -134,7 +134,7 @@ function Reservar_datos() {
                 <input type="text" onChange={(e) => setn_tarjeta(e.target.value)} required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <input onChange={(e) => handleLength(e)} type="number" required placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
-                  <option disabled value="">Selecciona un menu</option>
+                  <option value="">Selecciona un menu</option>
                   <option value="1">Menu1</option>
                   <option value="2">Menu2</option>
                   <option value="3">Menu3</option>

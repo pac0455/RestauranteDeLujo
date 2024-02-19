@@ -52,10 +52,7 @@ const router = createBrowserRouter([
         path: '/misReservas',
         element: <MisReservas/>
       },
-      {
-        path: '/addTarjeta',
-        element: <FormTarjetasCredito/>
-      },
+
     ]
   },
   {
