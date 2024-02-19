@@ -6,7 +6,7 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { getMisReservas,deleteReserva } from '../services/fecth';
 function MisReservas() {
   const [Logueado, setLogueado] = useState()
-  const [Reservas, setReservas] = useState()
+  const [Reservas, setReservas] = useState([])
   useEffect(() => {
     let token = localStorage.getItem('token');
     if (token === "" || token === undefined) {
@@ -28,7 +28,7 @@ function MisReservas() {
   return (
     <div className='app__bg  min-h-screen p-3 flex flex-wrap justify-around'>
       <div className='app__bg  min-h-screen p-3 flex flex-wrap justify-around'>
-    {Reservas && Reservas.length === 0 ? (
+    {Reservas && Reservas.length === 0  ? (
       <div className='w-full h-full flex justify-center items-center'>
       <p className='text-white font-bold text-3xl '>No hay reservas</p>
       </div>

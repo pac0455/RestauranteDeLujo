@@ -11,9 +11,6 @@ function Registro() {
   const [cvv, setcvv] = useState()
   const [n_tarjeta, setn_tarjeta] = useState()
   const [Nombre_tarjeta, setNombre_tarjeta] = useState()
-  const div = (
-    <div></div>
-  )
   useEffect(() => {
     let token = localStorage.getItem('token')
     if (token == "" || token == undefined) {
@@ -35,9 +32,11 @@ function Registro() {
   const handleRegistro = async (e) => {
     e.preventDefault()
     const response = await registro(Nombre,email,password,Nombre_tarjeta,cvv,n_tarjeta)
-    const data=response
-    console.log(response)
-    localStorage.setItem('token', response.token)
+    if(response.status){
+      localStorage.setItem('token', response.token)
+    }else{
+      alert('Error inesperado')
+    }
     window.location.reload()
   }
   return (

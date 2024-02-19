@@ -22,20 +22,6 @@ class AuthController extends Controller
         $tarjetaCredito=null;
         try {
             //Validated
-            $validateUser = Validator::make($request->all(),
-            [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required'
-            ]);
-
-            if($validateUser->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
-            }
             $tarjetaCredito=Tarjeta_credito::create([
                 'n_tarjeta'=>$request->n_tarjeta,
                 'nombre_tarjeta'=>$request->nombre_tarjeta,

@@ -48,7 +48,7 @@ const [Fallo, setFallo] = useState(false)
       <p className='text-white text-center w-full'>Contraseño o email inexistentes</p>
     </div>
     ):''}
-      <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-1/4 ">
+      <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20 lg:w-2/4 ">
         <div className="app__newsletter-heading text-center">
           <SubHeading title="Login" className="p__cormorant" />
 
