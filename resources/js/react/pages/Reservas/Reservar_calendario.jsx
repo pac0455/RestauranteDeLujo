@@ -17,7 +17,6 @@ function Reservar() {
             const data = await getHoras();
             setFechasDisponibles(data)
             setDias([...new Set(data.map(fecha => fecha.dia))])
-            console.log(700%26);
         }
         fecth()
     }, [])
