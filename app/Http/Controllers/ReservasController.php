@@ -30,7 +30,13 @@ class ReservasController extends Controller
     }
     public function getReservasUser(){
         $user = Auth::user();
-        $reservas=Reserva::where('id_user',$user->id)->get();
+        $reservas = Reserva::where('id_user', $user->id)->get();
+
+        foreach ($reservas as $reserva) {
+            $reserva->user;
+            $reserva->menu; 
+            $reserva->fecha; 
+        }
         return response()->json($reservas);
     }
     public function ReservarLogueado(Request $request){

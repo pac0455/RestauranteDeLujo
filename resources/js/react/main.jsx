@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { Navbar,FooterOverlay} from './components';
 import Login from './pages/Login';
-import {Reservar_datos,Reservar_calendario,Registro,MisReservas} from './pages/';
+import {Reservar_datos,Reservar_calendario,Registro,MisReservas,Carta} from './pages/';
 
 
 import './index.css';
@@ -51,8 +51,12 @@ const router = createBrowserRouter([
       {
         path: '/misReservas',
         element: <MisReservas/>
-      }
+      },
     ]
+  },
+  {
+    path : '/carta',
+    element: <Carta/>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -8,7 +8,7 @@ export const getHoras= async (token)=>{
     })
     return await result.json()
 }
-export const getMisReservas= async ()=>{
+export const getMisReservas= async (token)=>{
     const result=await fetch('http://localhost/example-app/public/api/getReservasUser',{
         headers: {
             'Content-Type': 'application/json', 

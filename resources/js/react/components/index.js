@@ -3,6 +3,8 @@ import Newsletter from '../pages/Login';
 import FooterOverlay from './Footer/FooterOverlay';
 import MenuItem from './Menuitem/MenuItem';
 import Navbar from './Navbar/Navbar';
+import MiReservaItem from './MiReservaItem';
+
 
 
 export {
@@ -10,5 +12,6 @@ export {
   Newsletter,
   FooterOverlay,
   MenuItem,
+  MiReservaItem,
   Navbar,
 };
