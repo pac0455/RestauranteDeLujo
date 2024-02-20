@@ -36,7 +36,6 @@ function Reservar() {
                 </div>
                 <div className='flex gap-10 p-7'>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-
                         <StaticDateTimePicker className='sm:w-96 xs:w-full rounded-lg shadow-inner'
                             onChange={e => {
                                 setfecha(e)
