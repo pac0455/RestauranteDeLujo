@@ -29,5 +29,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/getReservasUser',[ReservasController::class, 'getReservasUser']);
     Route::post('/reservarLogueado',[ReservasController::class, 'ReservarLogueado']);
     Route::get('/getAllDataUsers',[ReservasController::class, 'getAllDataUsers']);
+    Route::post('/addTarjeta',[ReservasController::class, 'AddTarjeta']);
+    Route::post('/deleteTarjeta',[ReservasController::class, 'deleteTarjeta']);
     Route::get('/logoutUser',[AuthController::class, 'logoutUser']);
 });

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 
-import {AboutUs,Chef,FindUs, Footer, Gallery, Header, Intro, Laurels, SpecialMenu} from '../pages';
+import {AboutUs,Chef,FindUs, Footer, Gallery, Header, Intro, Laurels, SpecialMenu} from '../components';
 import '../App.css';
 
 const Home = () => {

@@ -32,10 +32,12 @@ function Registro() {
   const handleRegistro = async (e) => {
     e.preventDefault()
     const response = await registro(Nombre,email,password,Nombre_tarjeta,cvv,n_tarjeta)
+    console.log(response);
     if(response.status){
       localStorage.setItem('token', response.token)
+      alert(response.message)
     }else{
-      alert('Error inesperado')
+      alert(response.message)
     }
     window.location.reload()
   }

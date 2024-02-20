@@ -16,18 +16,22 @@ class ReservaMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $dia;
+    public $hora;
+    public $nombre;
+    public function __construct($dia,$hora,$nombre)
     {
-
+        $this->dia=$dia;
+        $this->hora=$hora;
+        $this->nombre=$nombre;
     }
-
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Reserva Mail',
+            subject: 'Reserva restaurante',
         );
     }
 

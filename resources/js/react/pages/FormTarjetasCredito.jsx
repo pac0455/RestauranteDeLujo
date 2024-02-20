@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SubHeading } from '../components';
-
+import {addTarjeta} from '../services/fecth';
 function FormTarjetasCredito() {
     const [cvv, setcvv] = useState()
     const [n_tarjeta, setn_tarjeta] = useState()
@@ -14,9 +14,18 @@ function FormTarjetasCredito() {
         }
         setcvv(e.target.value)
     }
-    const handleAddTarjeta = (e) => {
+    const handleAddTarjeta = async (e) => {
         e.preventDefault();
-        console.log('object');
+        const token=localStorage.getItem('token')
+        const response=await addTarjeta(token,n_tarjeta,Nombre_tarjeta,cvv)
+        if(response.status){
+            console.log(response);
+            alert('Tarjeta añadida correctamente')
+            window.location.href='/misTarjetas'
+        }else{
+            console.log(response);
+            alert('Ha habido un problema')
+        }
     }
     return (
         <div className='bg-[#0C0C0C] flex justify-center flex-col items-center '>
@@ -36,7 +45,7 @@ function FormTarjetasCredito() {
                         </div>
                     </div>
                     <button type="submit" className="custom__button bg-crimson text-black font-bold tracking-wide uppercase px-6 py-2 lg:py-3 lg:px-8 border-none outline-none cursor-pointer sm:w-full lg:w-64 xl:w-96  hover:rounded-lg transition-all">
-                        Registrarse
+                        Añadir tarjeta
                     </button>
                 </form>
             </div>

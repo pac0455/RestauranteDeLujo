@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SubHeading from '../../components/SubHeading/SubHeading';
 import { Link, useParams } from 'react-router-dom';
-import { getAllDataUsers } from '../../services/fecth';
-import { ReservarUserLogueado, ReservarUserNoLogueado } from '../../services/fecth';
+import { ReservarUserLogueado, ReservarUserNoLogueado,getAllDataUsers } from '../../services/fecth';
 
 function Reservar_datos() {
   const { dia, hora } = useParams()
@@ -58,12 +57,14 @@ function Reservar_datos() {
     e.preventDefault()
     let response = await ReservarUserNoLogueado(dia, hora, menu, Nombre, email, cvv, Nombre_tarjeta, n_tarjeta)
     console.log(response);
-    if (response.status) {
-      alert('Reserva hecha');
-    } else {
-      alert('Ha ocurrido un error');
-    }
-    window.location.href='/'
+    if(response.status){
+      console.log(response);
+      alert(response.message)
+      window.location.href='/'
+  }else{
+      console.log(response);
+      alert('Ha habido un problema')
+  }
   }
   return (
     Logueado ? (
@@ -93,8 +94,7 @@ function Reservar_datos() {
                 <input type="text" onChange={e => setn_tarjeta(e.target.value)} defaultValue={n_tarjeta} readOnly required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <input readOnly defaultValue={cvv} required onChange={(e) => handleLength(e)} type="number" placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
-                  <option disabled value="">Selecciona un menu</option>
-                  <option value="">Elige un menu</option>
+                  <option value="">Selecciona un menu</option>
                   <option value="1">Menu1</option>
                   <option value="2">Menu2</option>
                   <option value="3">Menu3</option>

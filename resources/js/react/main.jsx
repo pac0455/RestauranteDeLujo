@@ -1,17 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Home from './pages/Home'
-import {Footer} from './pages/';
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet
 } from "react-router-dom";
-import { Navbar,FooterOverlay} from './components';
-import Login from './pages/Login';
-import {Reservar_datos,Reservar_calendario,Registro,MisReservas,Carta,FormTarjetasCredito} from './pages/';
-
-
+import { 
+  Navbar,
+  FooterOverlay,
+  Footer,
+} from './components';
+import {
+  Reservar_datos,
+  Reservar_calendario,
+  Registro,MisReservas,
+  Carta,
+  FormTarjetasCredito,
+  Login,
+  Home,
+  MisTarjetas
+} from './pages/';
 import './index.css';
 
 function AppLayout() {
@@ -52,7 +60,14 @@ const router = createBrowserRouter([
         path: '/misReservas',
         element: <MisReservas/>
       },
-
+      {
+        path: '/addTarjeta',
+        element: <FormTarjetasCredito/>
+      },
+      {
+        path: '/misTarjetas',
+        element: <MisTarjetas/>
+      },
     ]
   },
   {

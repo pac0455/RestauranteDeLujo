@@ -22,16 +22,16 @@ class AuthController extends Controller
         $tarjetaCredito=null;
         try {
             //Validated
-            $tarjetaCredito=Tarjeta_credito::create([
-                'n_tarjeta'=>$request->n_tarjeta,
-                'nombre_tarjeta'=>$request->nombre_tarjeta,
-                'CVV'=>$request->CVV
-            ]);
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'id_tarjeta_credito'=>$tarjetaCredito->id
+            ]);
+            Tarjeta_credito::create([
+                'n_tarjeta'=>$request->n_tarjeta,
+                'nombre_tarjeta'=>$request->nombre_tarjeta,
+                'CVV'=>$request->CVV,
+                'id_user'=>$user->id
             ]);
 
             return response()->json([

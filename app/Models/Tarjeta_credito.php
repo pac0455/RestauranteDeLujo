@@ -12,6 +12,7 @@ class Tarjeta_credito extends Model
     protected $fillable = [
         'n_tarjeta',
         'nombre_tarjeta',
-        'CVV'
+        'CVV',
+        'id_user'
     ];
 }

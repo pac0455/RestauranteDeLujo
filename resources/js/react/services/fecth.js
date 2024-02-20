@@ -102,3 +102,33 @@ export const deleteReserva= async (id)=>{
     })
     return await result.json()
 }
+export const deleteTarjeta= async (token,id)=>{
+    const result=await fetch('http://localhost/example-app/public/api/deleteTarjeta',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            id:id,
+        })
+    })
+    return await result.json()
+}
+export const addTarjeta= async (token,n_tarjeta,nombre_tarjeta,CVV)=>{
+    const result=await fetch('http://localhost/example-app/public/api/addTarjeta',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            n_tarjeta:n_tarjeta,
+            nombre_tarjeta:nombre_tarjeta,
+            CVV:CVV
+        })
+    })
+    return await result.json()
+}

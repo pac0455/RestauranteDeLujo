@@ -8,7 +8,7 @@ use App\Models\Fecha;
 use App\Models\Reserva;
 use Illuminate\Http\Request;
 use App\Models\Tarjeta_credito;
-use PhpParser\Node\Stmt\TryCatch;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -25,7 +25,7 @@ class ReservasController extends Controller
     }
     public function getAllDataUsers(){
         $user = Auth::user();
-        $tarjeta_credito=Tarjeta_credito::where('id',$user->id)->get();
+        $tarjeta_credito=Tarjeta_credito::where('id_user',$user->id)->get();
         return response()->json([
             'user'=>$user,
             'tarjeta_credito'=>$tarjeta_credito
@@ -47,10 +47,31 @@ class ReservasController extends Controller
         }
         return response()->json($request->all());
     }
+    public function deleteTarjeta(Request $request){
+        try {
+            $user = Auth::user();
+            $n_filas=Tarjeta_credito::where('id_user',$user->id)->count();
+            if($n_filas==1){
+                throw New Exception('No puedes quedarte sin tarjetas de credito');
+            }else{
+                Tarjeta_credito::destroy($request->id);
+            }
+            return response()->json([
+                'status' => true,
+                'message' =>'Tarjeta borrada apropiadamente',
+                'n-filas'=>$n_filas,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => true,
+                'message' =>$th->getMessage(),
+            ]);
+        }
+        return response()->json($request->all());
+    }
     public function getReservasUser(){
         $user = Auth::user();
         $reservas = Reserva::where('id_user', $user->id)->get();
-
         foreach ($reservas as $reserva) {
             $reserva->user;
             $reserva->menu;
@@ -60,10 +81,12 @@ class ReservasController extends Controller
     }
     public function AddTarjeta(Request $request){
         try {
-            $Tarjeta_credito=Tarjeta_credito::create([
+            $user=Auth::user();
+            Tarjeta_credito::create([
                 'n_tarjeta'=>$request->n_tarjeta,
                 'nombre_tarjeta'=>$request->nombre_tarjeta,
-                'CVV'=>$request->CVV
+                'CVV'=>$request->CVV,
+                'id_user'=>$user->id
             ]);
             return response()->json([
                 'status' => true,
@@ -114,7 +137,10 @@ class ReservasController extends Controller
                 'n_tarjeta'=>$request->n_tarjeta,
                 'id_menu'=>$request->menu
             ]);
-            Mail::to($request->email)->send(new ReservaMail);
+            $dia=$request->dia;
+            $hora=$request->hora;
+            $nombre=$request->nombre;
+            Mail::to($request->email)->send(new ReservaMail($dia,$hora,$nombre));
             return response()->json([
                 'status' => true,
                 'message' =>'Reserva creada apropiadamente',

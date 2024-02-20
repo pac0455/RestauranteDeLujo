@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigInteger('id_tarjeta_credito');
-            $table->foreign('id_tarjeta_credito')->references('id')->on('tarjeta_credito');
             $table->rememberToken();
             $table->timestamps();
         });

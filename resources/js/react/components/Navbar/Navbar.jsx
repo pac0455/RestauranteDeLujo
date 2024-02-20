@@ -52,15 +52,19 @@ const Navbar = () => {
                 <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
                   <Link className="p__opensans" to={"/misReservas"} onClick={() => setToggleMenu(false)}>Mis reservas</Link>
                 </li>
+                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
+                  <Link className="p__opensans" to={"/addTarjeta"} onClick={() => setToggleMenu(false)}>Añadir tarjeta</Link>
+                </li>
+                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
+                  <Link className="p__opensans" to={"/misTarjetas"} onClick={() => setToggleMenu(false)}>Mis tarjetas</Link>
+                </li>
               </ul>
             </div>)}
         </div>
       ) : (
         <div className="app__navbar-login ">
           <Link to={"/login"} className="p__opensans">Log In / Registro</Link>
-          <div />
           <Link to={"/reservarCalendario"} className="p__opensans">Reservar</Link>
-
         </div>
       )}
       <div className="app__navbar-smallscreen">
