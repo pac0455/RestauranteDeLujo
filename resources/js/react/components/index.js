@@ -14,6 +14,8 @@ import Intro from './Intro/Intro';
 import Laurels from './Premios/Premios';
 import SpecialMenu from './Menu/SpecialMenu';
 import ItemTarjeta from './ItemTarjeta';
+
+
 export {
   SubHeading,
   Newsletter,
@@ -30,5 +32,6 @@ export {
   Intro,
   Laurels,
   SpecialMenu,
-  ItemTarjeta
+  ItemTarjeta,
+
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SubHeading } from '../components';
+import { SubHeading} from '../components';
 import {addTarjeta} from '../services/fecth';
 function FormTarjetasCredito() {
     const [cvv, setcvv] = useState()
@@ -34,7 +34,6 @@ function FormTarjetasCredito() {
                     <SubHeading title="Añadir tarjeta" className="p__cormorant text-sm" />
                 </div>
                 <form onSubmit={e => handleAddTarjeta(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
-
                     <div className='flex flex-col gap-4 w-full'>
                         <div>
                             <input type="text" onChange={(e) => setNombre_tarjeta(e.target.value)} required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />

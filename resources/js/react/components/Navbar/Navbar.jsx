@@ -17,11 +17,12 @@ const Navbar = () => {
     } else {
       setLogueado(true)
     }
-  },[logueado])
-  const handleLogut=()=>{
-    localStorage.setItem('token','')
-    window.location.href='/login'
+  }, [logueado])
+  const handleLogut = () => {
+    localStorage.setItem('token', '')
+    window.location.href = '/login'
   }
+  const classLiLogin="hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg md:text-center md:text-4xl lg:text-xl"
   return (
     <nav className="app__navbar">
       <div className="app__navbar-logo">
@@ -36,31 +37,31 @@ const Navbar = () => {
       </ul>
       {logueado ? (
         <div className='relative'>
-          <FaCircleUser onClick={() => setOpciones(!opciones)} className='sm:text-lg lg:text-4xl cursor-pointer' color='white' />
-          {opciones && (
-            <div className='w-40 h-96 bg-[#171513] absolute mt-7  right-1'>
-              <div className='absolute -top-4 right-0 bg-[#171513]' style={{
-                width: '25px',
-                aspectRatio: '1/cos(30deg)',
-                clipPath: 'polygon(50% 0,100% 100%,0 100%)',
-              }}></div>
-              <ul className='p-3 text-[#C0B176]'>
-                <li onClick={handleLogut} className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg p__opensans'>Logut</li>
-                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
-                  <Link className="p__opensans" to={"/reservarCalendario"} onClick={() => setToggleMenu(false)}>Reservar</Link>
-                </li>
-                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
-                  <Link className="p__opensans" to={"/misReservas"} onClick={() => setToggleMenu(false)}>Mis reservas</Link>
-                </li>
-                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
-                  <Link className="p__opensans" to={"/addTarjeta"} onClick={() => setToggleMenu(false)}>Añadir tarjeta</Link>
-                </li>
-                <li className='hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg'>
-                  <Link className="p__opensans" to={"/misTarjetas"} onClick={() => setToggleMenu(false)}>Mis tarjetas</Link>
-                </li>
-              </ul>
-            </div>)}
-        </div>
+                <FaCircleUser onClick={() => setOpciones(!opciones)} className='text-4xl cursor-pointer' color='white' />
+                {opciones && (
+                  <div className='w-40 h-96 bg-[#171513] absolute mt-7  right-1 md:w-screen md:h-screen lg:w-96 items-center'>
+                    <div className='absolute -top-4 right-0 bg-[#171513]' style={{
+                      width: '25px',
+                      aspectRatio: '1/cos(30deg)',
+                      clipPath: 'polygon(50% 0,100% 100%,0 100%)',
+                    }}></div>
+                    <ul className='p-3 text-white flex flex-col justify-center '>
+                      <li onClick={handleLogut} className={classLiLogin}>Logut</li>
+                      <li className={classLiLogin}>
+                        <Link to={"/reservarCalendario"} onClick={() => setToggleMenu(false)}>Reservar</Link>
+                      </li>
+                      <li className={classLiLogin}>
+                        <Link  to={"/misReservas"} onClick={() => setToggleMenu(false)}>Mis reservas</Link>
+                      </li>
+                      <li className={classLiLogin}>
+                        <Link  to={"/addTarjeta"} onClick={() => setToggleMenu(false)}>Añadir tarjeta</Link>
+                      </li>
+                      <li className={classLiLogin}>
+                        <Link  to={"/misTarjetas"} onClick={() => setToggleMenu(false)}>Mis tarjetas</Link>
+                      </li>
+                    </ul>
+                  </div>)}
+              </div>
       ) : (
         <div className="app__navbar-login ">
           <Link to={"/login"} className="p__opensans">Log In / Registro</Link>
@@ -68,7 +69,12 @@ const Navbar = () => {
         </div>
       )}
       <div className="app__navbar-smallscreen">
-        {<GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />}
+        {
+          <div className='flex gap-3'>
+            <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
+
+          </div>
+        }
         {toggleMenu && (
           <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
             <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
