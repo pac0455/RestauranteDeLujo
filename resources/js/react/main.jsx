@@ -5,7 +5,7 @@ import {
   RouterProvider,
   Outlet
 } from "react-router-dom";
-import { 
+import {
   Navbar,
   FooterOverlay,
   Footer,
@@ -14,11 +14,11 @@ import {
   Reservar_datos,
   Reservar_calendario,
   Registro,MisReservas,
-  Carta,
   FormTarjetasCredito,
   Login,
   Home,
-  MisTarjetas
+  MisTarjetas,
+  MenuQR
 } from './pages/';
 import './index.css';
 
@@ -68,11 +68,11 @@ const router = createBrowserRouter([
         path: '/misTarjetas',
         element: <MisTarjetas/>
       },
+      {
+        path : '/carta',
+        element: <MenuQR/>
+      }
     ]
-  },
-  {
-    path : '/carta',
-    element: <Carta/>
   }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

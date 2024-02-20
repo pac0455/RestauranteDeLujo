@@ -12,9 +12,9 @@ function MisTarjetas() {
         fecth()
     }, [])
     return (
-        <div className='flex flex-wrap justify-around gap-12 p-4 min-h-[50vh] app__bg'>
+        <div className='flex flex-wrap justify-around gap-12 p-4 min-h-[70vh] app__bg'>
         { data && data.tarjeta_credito.map(tarjeta=>(
-            <ItemTarjeta  key={tarjeta.id} tarjeta={tarjeta}/>
+            <ItemTarjeta  key={tarjeta.id} tarjeta={tarjeta} setdata={setdata}/>
         ))}
         </div>
     )

@@ -66,6 +66,7 @@ function Reservar_datos() {
       alert('Ha habido un problema')
     }
   }
+  console.log(data);
   return (
     Logueado ? (
       <div className='bg-[#0C0C0C] flex justify-center flex-col items-center p-4 '>
@@ -73,29 +74,29 @@ function Reservar_datos() {
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
         </div>
-        <div className="  border border-[#C0B176] py-4 px-8 bg-black w-full sm:w-full md:w-full lg:mt-20  lg:w-3/4 ">
+        <div className="border border-[#C0B176] py-4 px-8 bg-black w-full sm:w-full md:w-full lg:mt-20  lg:w-3/4 ">
           <div className="app__newsletter-heading text-center">
             <SubHeading title="Reservar" className="p__cormorant text-sm" />
           </div>
           <form onSubmit={e => handleSubmitLogueado(e)} className="flex items-center w-full flex-wrap flex-col gap-7 mt-12 text-white">
-            <select onChange={e => handleTarjetaCredito(e)} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
+            <select onChange={e => handleTarjetaCredito(e)} className="lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >
               <option value="">Selecciona una tarjeta</option>
               {data && data.tarjeta_credito.map(e => <option value={e.id}>{e.nombre_tarjeta}</option>)}
             </select>
-            <div className='flex flex-wrap justify-around  w-full'>
-              <input type="date" required defaultValue={dia} className=" lg:w-1/3 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-              <input type="time" required defaultValue={`${hora}:00`} className=" lg:w-1/3 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+            <div className='flex flex-wrap gap-4 justify-around  w-full'>
+              <input type="date" required defaultValue={dia} className="w-full lg:w-1/3 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+              <input type="time" required defaultValue={`${hora}:00`} className="w-full lg:w-1/3 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
             </div>
             <div className='flex flex-wrap flex-col gap-4 w-full'>
               <div>
                 <input type="text" onChange={e => setNombre_tarjeta(e.target.value)} defaultValue={Nombre_tarjeta} readOnly required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
               </div>
-              <div className='flex justify-around flex-wrap'>
-                <input type="text" onChange={e => setn_tarjeta(e.target.value)} defaultValue={n_tarjeta} readOnly required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-                <input readOnly defaultValue={cvv} required onChange={(e) => handleLength(e)} type="number" placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+              <div className='flex justify-around gap-4 flex-wrap'>
+                <input type="text" onChange={e => setn_tarjeta(e.target.value)} defaultValue={n_tarjeta} readOnly required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black w-full lg:w-1/4  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+                <input readOnly defaultValue={cvv} required onChange={(e) => handleLength(e)} type="number" placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black w-full lg:w-1/4  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <select
                   onChange={e => setmenu(e.target.value)}
-                  className="border border-golden rounded px-4 py-2 text-white bg-black text-xs lg:text-xl lg:px-6 lg:py-3"
+                  className="border border-golden rounded px-4 py-2 text-white w-full lg:w-1/3 bg-black text-xs lg:text-xl lg:px-6 lg:py-3"
                 >
                   <option value="">Selecciona un menu</option>
                   <option value="1">Menu1</option>
@@ -111,7 +112,7 @@ function Reservar_datos() {
         </div>
       </div>
     ) : (
-      <div className='bg-[#0C0C0C] flex justify-center flex-col items-center '>
+      <div className='bg-[#0C0C0C] flex justify-center flex-col items-center p-3'>
         <div className='w-full flex gap-1'>
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
           <div className='my-3 w-1/2 h-1 bg-[#DCCA75]'></div>
@@ -121,19 +122,19 @@ function Reservar_datos() {
             <SubHeading title="Reservar" className="p__cormorant text-sm" />
           </div>
           <form onSubmit={e => handleSubmitNoLogueado(e)} className="flex items-center flex-col gap-7 mt-12 text-white">
-            <div className='flex gap-4 w-full'>
-              <input onChange={(e) => SetEmail(e.target.value)} type="email" required placeholder="Enter your email address" className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-              <input onChange={(e) => setNombre(e.target.value)} type="text" required placeholder="A nombre de..." className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+            <div className='flex gap-4 w-full flex-wrap justify-around'>
+              <input onChange={(e) => SetEmail(e.target.value)} type="email" required placeholder="Enter your email address" className=" lg:w-[45%] border border-golden rounded px-4 py-2 text-white bg-black w-full  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+              <input onChange={(e) => setNombre(e.target.value)} type="text" required placeholder="A nombre de..." className=" lg:w-[45%] border border-golden rounded px-4 py-2 text-white bg-black w-full  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
             </div>
-            <div className='flex gap-4 w-full'>
-              <input type="date" required defaultValue={dia} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-              <input type="time" required defaultValue={`${hora}:00`} className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+            <div className='flex w-full flex-wrap gap-4 justify-around'>
+              <input type="date" required defaultValue={dia} className=" lg:w-[45%] w-full sm:w-full md:w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+              <input type="time" required defaultValue={`${hora}:00`} className="w-full lg:w-[45%] border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
             </div>
             <div className='flex flex-col gap-4 w-full'>
               <div>
                 <input type="text" onChange={(e) => setNombre_tarjeta(e.target.value)} required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
               </div>
-              <div className='flex justify-around flex-wrap'>
+              <div className='flex justify-around flex-wrap gap-4'>
                 <input type="text" onChange={(e) => setn_tarjeta(e.target.value)} required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <input onChange={(e) => handleLength(e)} type="number" required placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
                 <select onChange={e => setmenu(e.target.value)} className="  border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" >

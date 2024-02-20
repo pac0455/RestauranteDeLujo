@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { getMisReservas, deleteReserva } from '../services/fecth';
 function MisReservas() {
   const [Logueado, setLogueado] = useState()
@@ -22,11 +18,17 @@ function MisReservas() {
   }, []);
   const handleDelete = async (id) => {
     const response = await deleteReserva(id)
-    window.location.reload()
+    let token = localStorage.getItem('token');
+
+    const fetchData = async (token) => {
+      const data = await getMisReservas(token);
+      setReservas(data);
+    }
+    fetchData(token);
     console.log(response);
   }
   return (
-    <div className='flex flex-wrap  gap-20 p-4 min-h-[50vh] app__bg w-full'>
+    <div className='flex flex-wrap  gap-20 p-4 min-h-[80vh] app__bg w-full '>
       {Reservas.length == 0 ? (
         <div className='w-full h-full flex justify-center items-center'>
           <p className='text-white font-bold text-3xl '>No hay reservas</p>

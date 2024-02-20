@@ -42,8 +42,8 @@ function Registro() {
     window.location.reload()
   }
   return (
-    <div className='bg-[#0C0C0C] flex justify-center flex-col items-center '>
-      <div className="  border border-[#C0B176] py-4 px-8 bg-black sm:w-full sm:mt-6 lg:mt-20  lg:w-2/4 ">
+    <div className='bg-[#0C0C0C] flex justify-center flex-col items-center p-3 '>
+      <div className="border border-[#C0B176] py-4 px-8 bg-black w-full sm:mt-6 lg:mt-20 lg:w-2/4">
         <div className="app__newsletter-heading text-center">
           <SubHeading title="Sign up" className="p__cormorant text-sm" />
         </div>
@@ -51,15 +51,15 @@ function Registro() {
           <div className='flex gap-4 w-full'>
             <input type="text" onChange={(e) => setNombre(e.target.value)}  placeholder='Nombre de usuario' required className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
           </div>
-          <div className='flex gap-4 w-full'>
-            <input onChange={(e) => SetEmail(e.target.value)} type="email" required placeholder="Enter your email address" className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
-            <input onChange={(e) => SetPassword(e.target.value)} type="password" required placeholder="Enter your password" className=" lg:w-1/2 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+          <div className='flex gap-4 w-full justify-around flex-wrap'>
+            <input onChange={(e) => SetEmail(e.target.value)} type="email" required placeholder="Enter your email address" className=" lg:w-1/3 w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
+            <input onChange={(e) => SetPassword(e.target.value)} type="password" required placeholder="Enter your password" className=" lg:w-1/3 border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
           </div>
           <div className='flex flex-col gap-4 w-full'>
             <div>
               <input type="text" onChange={(e) => setNombre_tarjeta(e.target.value)} required placeholder='Nombre de la tarjeta' className="w-full border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
             </div>
-            <div className='flex justify-around'>
+            <div className='flex gap-4 w-full justify-around flex-wrap'>
               <input type="text" onChange={(e) => setn_tarjeta(e.target.value)} required placeholder='Numero de tarjeta' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
               <input onChange={(e) => handleLengthCVV(e)} type="number" required placeholder='CVV' className=" border border-golden rounded px-4 py-2 text-white bg-black  lg:mb-0 lg:rounded-lg lg:px-6 lg:py-3" />
             </div>

@@ -22,9 +22,9 @@ const Navbar = () => {
     localStorage.setItem('token', '')
     window.location.href = '/login'
   }
-  const classLiLogin="hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg md:text-center md:text-4xl lg:text-xl"
+  const classLiLogin="hover:bg-gray-700 transition-all cursor-pointer p-2 rounded-lg md:text-center md:text-2xl lg:text-2xl"
   return (
-    <nav className="app__navbar">
+    <nav className="app__navbar p-2">
       <div className="app__navbar-logo">
         <img src={images.gericht} alt="app__logo" />
       </div>
@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className='relative'>
                 <FaCircleUser onClick={() => setOpciones(!opciones)} className='text-4xl cursor-pointer' color='white' />
                 {opciones && (
-                  <div className='w-40 h-96 bg-[#171513] absolute mt-7  right-1 md:w-screen md:h-screen lg:w-96 items-center'>
+                  <div className='w-40 h-96 bg-[#171513] absolute mt-7  right-1 md:w-64 md:h-screen lg:w-96 items-center'>
                     <div className='absolute -top-4 right-0 bg-[#171513]' style={{
                       width: '25px',
                       aspectRatio: '1/cos(30deg)',
@@ -63,8 +63,8 @@ const Navbar = () => {
                   </div>)}
               </div>
       ) : (
-        <div className="app__navbar-login ">
-          <Link to={"/login"} className="p__opensans">Log In / Registro</Link>
+        <div className=" ">
+          <Link to={"/login"} className="p__opensans">Log In / Registro|</Link>
           <Link to={"/reservarCalendario"} className="p__opensans">Reservar</Link>
         </div>
       )}
@@ -72,10 +72,10 @@ const Navbar = () => {
         {
           <div className='flex gap-3'>
             <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />
-
           </div>
         }
         {toggleMenu && (
+          <>
           <div className="app__navbar-smallscreen_overlay flex__center slide-bottom">
             <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
             <ul className="app__navbar-smallscreen_links">
@@ -86,6 +86,7 @@ const Navbar = () => {
               <li><a href="#contact" onClick={() => setToggleMenu(false)}>Contacto</a></li>
             </ul>
           </div>
+          </>
         )}
       </div>
     </nav>

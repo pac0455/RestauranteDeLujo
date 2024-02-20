@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import {deleteTarjeta} from '../services/fecth';
+import {deleteTarjeta,getAllDataUsers} from '../services/fecth';
 
-function ItemTarjeta({tarjeta}) {
+function ItemTarjeta({tarjeta,setdata}) {
     const handleDelete=async id=>{
         let token=localStorage.getItem('token');
         console.log(token);
@@ -9,7 +9,12 @@ function ItemTarjeta({tarjeta}) {
         if(response.status){
             console.log(response)
             alert(response.message)
-            window.location.reload()
+            const fecth = async () => {
+                const response = await getAllDataUsers(localStorage.getItem('token'));
+                console.log(response);
+                setdata(response)
+            }
+            fecth()
         }else{
             console.log(response);
             alert(response.message)
