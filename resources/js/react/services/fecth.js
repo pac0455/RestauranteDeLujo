@@ -1,5 +1,5 @@
 export const getHoras= async (token)=>{
-    const result=await fetch('http://localhost/example-app/public/api/getHoras',{
+    const result=await fetch('https://daw10.medacarena.com.es/public/api/getHoras',{
         headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',
@@ -68,7 +68,6 @@ export const ReservarUserLogueado= async (token,dia,hora,menu)=>{
 
 }
 export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombre_tarjeta,n_tarjeta)=>{
-    
     const result=await fetch('http://localhost/example-app/public/api/reservarNoLogueado',{
         method:'POST',
         headers: {
