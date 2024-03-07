@@ -6,7 +6,7 @@ export const getHoras= async (token)=>{
             'Authorization': `Bearer ${token}`
         },
     })
-    return await result.json()
+    return  result.json()
 }
 export const getMisReservas= async (token)=>{
     const result=await fetch('http://localhost/example-app/public/api/getReservasUser',{
