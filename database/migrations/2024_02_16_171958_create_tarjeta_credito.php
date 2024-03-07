@@ -16,9 +16,11 @@ return new class extends Migration
             $table->integer('n_tarjeta');
             $table->string('nombre_tarjeta');
             $table->integer('CVV');
-            $table->bigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_user');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users');
+
         });
     }
     /**
