@@ -1,10 +1,10 @@
 export const getHoras= async (token)=>{
     const result=await fetch('http://daw10.medacarena.com.es/public/api/getHoras',{
-        headers: {
+        /* headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`
-        },
+        }, */
     })
     return await result.json()
 }
