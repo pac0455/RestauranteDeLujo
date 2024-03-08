@@ -11,7 +11,7 @@ const [Fallo, setFallo] = useState(false)
 
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch('http://localhost/example-app/public/api/login', {
+    fetch('https://daw10.medacarena.com.es/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
