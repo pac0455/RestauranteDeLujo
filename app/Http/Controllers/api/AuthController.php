@@ -19,7 +19,6 @@ class AuthController extends Controller
      */
     public function createUser(Request $request)
     {
-        $tarjetaCredito=null;
         try {
             //Validated
             $user = User::create([
