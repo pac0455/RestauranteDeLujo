@@ -1,6 +1,6 @@
-const url="https://daw10.medacarena.com.es/"
+const url="https://daw10.medacarena.com.es"
 export const getHoras= async (token)=>{
-    const result=await fetch(`${url}api/getHoras`,{
+    const result=await fetch(`${url}/api/getHoras`,{
         headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',
@@ -10,7 +10,7 @@ export const getHoras= async (token)=>{
     return await result.json()
 }
 export const getMisReservas= async (token)=>{
-    const result=await fetch(`${url}api/getReservasUser`,{
+    const result=await fetch(`${url}/api/getReservasUser`,{
         headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',
@@ -20,7 +20,7 @@ export const getMisReservas= async (token)=>{
     return await result.json()
 }
 export const registro = async (name, email,password,nombre_tarjeta,cvv,n_tarjeta) => {
-    const result = await fetch(`http://localhost/example-app/public/api/createUser`, {
+    const result = await fetch(`${url}/api/createUser`, {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json', 
@@ -38,7 +38,7 @@ export const registro = async (name, email,password,nombre_tarjeta,cvv,n_tarjeta
     return await result.json(); 
 };
 export const getAllDataUsers= async (token)=>{
-    const result=await fetch(`http://localhost/example-app/public/api/getAllDataUsers`,{
+    const result=await fetch(`${url}/api/getAllDataUsers`,{
         headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',
@@ -51,7 +51,7 @@ export const ReservarUserLogueado= async (token,dia,hora,menu)=>{
     console.log(menu);
     console.log(dia);
     console.log(hora);
-        const result=await fetch(`http://localhost/example-app/public/api/reservarLogueado`,{
+        const result=await fetch(`${url}/api/reservarLogueado`,{
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export const ReservarUserLogueado= async (token,dia,hora,menu)=>{
 
 }
 export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombre_tarjeta,n_tarjeta)=>{
-    const result=await fetch(`http://localhost/example-app/public/api/reservarNoLogueado`,{
+    const result=await fetch(`${url}/api/reservarNoLogueado`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json', 
@@ -90,7 +90,7 @@ export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombr
 }
 
 export const deleteReserva= async (id)=>{
-    const result=await fetch(`http://localhost/example-app/public/api/deleteReserva`,{
+    const result=await fetch(`${url}/api/deleteReserva`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export const deleteReserva= async (id)=>{
     return await result.json()
 }
 export const deleteTarjeta= async (token,id)=>{
-    const result=await fetch(`http://localhost/example-app/public/api/deleteTarjeta`,{
+    const result=await fetch(`${url}/api/deleteTarjeta`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ export const deleteTarjeta= async (token,id)=>{
     return await result.json()
 }
 export const addTarjeta= async (token,n_tarjeta,nombre_tarjeta,CVV)=>{
-    const result=await fetch(`http://localhost/example-app/public/api/addTarjeta`,{
+    const result=await fetch(`${url}/api/addTarjeta`,{
         method:'POST',
         headers: {
             'Content-Type': 'application/json',
