@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PruebaController;
-use App\Http\Controllers\Api\AuthController;
+use APP\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\ReservasController;
 
 /*
