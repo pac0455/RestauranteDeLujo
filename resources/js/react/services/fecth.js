@@ -1,5 +1,5 @@
 export const getHoras= async (token)=>{
-    const result=await fetch('https://daw10.medacarena.com.es/public/api/getHoras',{
+    const result=await fetch('https://daw10.medacarena.com.es/api/getHoras',{
         headers: {
             'Content-Type': 'application/json', 
             'Accept': 'application/json',

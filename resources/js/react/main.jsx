@@ -81,5 +81,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AppLayout />
     </React.StrictMode>
   </RouterProvider >
-
 )
