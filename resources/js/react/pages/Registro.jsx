@@ -37,9 +37,10 @@ function Registro() {
       localStorage.setItem('token', response.token)
       alert(response.message)
     }else{
-      alert(response.message)
+      alert('Ha ocurrido un error')
+      console.log(response.message);
     }
-/*     window.location.reload() */
+    window.location.reload()
   }
   return (
     <div className='bg-[#0C0C0C] flex justify-center flex-col items-center p-3 '>

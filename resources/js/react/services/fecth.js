@@ -2,7 +2,7 @@ const url="https://daw10.medacarena.com.es"
 export const getHoras= async (token)=>{
     const result=await fetch(`${url}/api/getHoras`,{
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`
         },
@@ -12,7 +12,7 @@ export const getHoras= async (token)=>{
 export const getMisReservas= async (token)=>{
     const result=await fetch(`${url}/api/getReservasUser`,{
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`
         },
@@ -21,9 +21,9 @@ export const getMisReservas= async (token)=>{
 }
 export const registro = async (name, email,password,nombre_tarjeta,cvv,n_tarjeta) => {
     const result = await fetch(`${url}/api/createUser`, {
-        method: 'POST', 
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
         body: JSON.stringify({
@@ -33,14 +33,14 @@ export const registro = async (name, email,password,nombre_tarjeta,cvv,n_tarjeta
             nombre_tarjeta: nombre_tarjeta,
             CVV:cvv,
             n_tarjeta:n_tarjeta
-        }) 
+        })
     });
-    return await result.json(); 
+    return await result.json();
 };
 export const getAllDataUsers= async (token)=>{
     const result=await fetch(`${url}/api/getAllDataUsers`,{
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': `Bearer ${token}`
         },
@@ -72,7 +72,7 @@ export const ReservarUserNoLogueado= async (dia,hora,menu,nombre,email,CVV,nombr
     const result=await fetch(`${url}/api/reservarNoLogueado`,{
         method:'POST',
         headers: {
-            'Content-Type': 'application/json', 
+            'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
         body: JSON.stringify({
