@@ -140,7 +140,7 @@ class ReservasController extends Controller
             $dia=$request->dia;
             $hora=$request->hora;
             $nombre=$request->nombre;
-            Mail::to($request->email)->send(new ReservaMail($dia,$hora,$nombre));
+            /* Mail::to($request->email)->send(new ReservaMail($dia,$hora,$nombre)); */
             return response()->json([
                 'status' => true,
                 'message' =>'Reserva creada apropiadamente',

@@ -67,7 +67,6 @@ function Reservar_datos() {
       alert('Ha habido un problema')
     }
   }
-  console.log(data);
   return (
     Logueado ? (
       <div className='bg-[#0C0C0C] flex justify-center flex-col items-center p-4 '>
