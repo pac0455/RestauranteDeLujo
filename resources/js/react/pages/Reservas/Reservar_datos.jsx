@@ -42,6 +42,7 @@ function Reservar_datos() {
     setcvv(tarjeta_select.CVV)
   }
   const handleSubmitLogueado = async (e) => {
+    console.log('si');
     e.preventDefault()
     let token = localStorage.getItem('token')
     let response = await ReservarUserLogueado(token, dia, hora, menu)
